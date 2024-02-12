@@ -29,14 +29,14 @@ MainWindow::~MainWindow() = default;
 
 void MainWindow::onClearPushButtonClicked() {
     m_ui->lcdNumber->display(0);
-    m_Sum = 0;
+    m_calc.clear();
     m_isChanged = false;
 }
 
 void MainWindow::onSumPushButtonClicked() {
-    m_Sum += m_ui->lcdNumber->value();
+    m_calc.append(m_ui->lcdNumber->value());
     if (m_isChanged) {
-        m_ui->lcdNumber->display(m_Sum);
+        m_ui->lcdNumber->display(m_calc.sum());
         m_isChanged = false;
     } else {
         m_ui->lcdNumber->display(0);

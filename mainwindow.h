@@ -6,6 +6,7 @@
 
 #include <QScopedPointer>
 #include <QSignalMapper>
+#include "calculator.h"
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -21,11 +22,10 @@ public:
 
 private:
   QScopedPointer<Ui::MainWindow> m_ui;
-  double m_Sum = 0;
-  bool m_isChanged = false;
-  QSignalMapper mMapper;
   void onPushButtonClicked();
   void onClearPushButtonClicked();
   void onSumPushButtonClicked();
+  Calculator m_calc;
+  bool m_isChanged = false;
 };
 #endif // MAINWINDOW_H
