@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-
 MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent), m_ui(new Ui::MainWindow) {
     m_ui->setupUi(this);
@@ -55,4 +54,13 @@ void MainWindow::onPushButtonClicked() {
     }
     qDebug() << m_ui->lcdNumber->value();
     m_ui->lcdNumber->display(value);
+}
+int MainWindow::emitPushButtonClicked() {
+    m_ui->pushButton_4->click();
+    m_ui->pushButton_5->click();
+    m_ui->pushButton_12->click();
+    m_ui->pushButton_4->click();
+    m_ui->pushButton_2->click();
+    m_ui->pushButton_12->click();
+    return m_ui->lcdNumber->value();
 }

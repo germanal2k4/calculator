@@ -7,6 +7,9 @@
 #include <QQmlApplicationEngine>
 #include <QStringList>
 #include <QUrl>
+#include <QGuiApplication>
+#include <QQmlContext>
+#include "AppCore.h"
 
 namespace Parser {
     struct Options {
@@ -46,7 +49,7 @@ int main(int argc, char *argv[]) {
     QScopedPointer<QCoreApplication> app(new QCoreApplication(argc, argv));
     auto options = Parser::exec();
 
-    options.qml = true;
+    options.widget = true;
     if (options.widget || options.qml) {
         qDebug() << "gui";
         app.reset();
@@ -56,15 +59,20 @@ int main(int argc, char *argv[]) {
             qDebug() << "widget";
             auto m = new MainWindow;
             m->show();
+            qDebug() << m->emitPushButtonClicked()*1000;
         } else {
-            QQmlApplicationEngine engine;
-            const QUrl url(QStringLiteral("qrc:/calculator.qml"));
-//            QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
-//                             app, [url](QObject *obj, const QUrl &objUrl) {
-//                        if (!obj && url == objUrl)
-//                            QCoreApplication::exit(-1);
-//                    }, Qt::QueuedConnection);
-//            engine.load(url);
+            auto engine = new  QQmlApplicationEngine;
+            const QUrl url(QStringLiteral("qrc:/Main.qml"));
+            QObject::connect(
+                    engine,
+                    &QQmlApplicationEngine::objectCreationFailed,
+                    qobject_cast<QGuiApplication*>(app.data()),
+                    []() { QCoreApplication::exit(-1); },
+                    Qt::QueuedConnection);
+            QQmlContext *context = engine->rootContext();
+            auto appCore = new AppCore;
+            context->setContextProperty("appCore", appCore);
+            engine->load(url);
             qDebug() << "qml";
         }
     } else {

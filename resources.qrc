@@ -1,12 +1,6 @@
 <RCC>
-    <qresource prefix="/Images">
-        <file>Button_h.png</file>
-        <file>Button.png</file>
-    </qresource>
-    <qresource prefix="/">
-        <file>main.qml</file>
-        <file>Button.qml</file>
-        <file>Style.qml</file>
+    <qresource>
+<file>Main.qml</file>
     </qresource>
 </RCC>
 

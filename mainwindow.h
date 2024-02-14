@@ -19,6 +19,7 @@ class MainWindow : public QMainWindow {
 public:
   MainWindow(QWidget *parent = nullptr);
   ~MainWindow();
+  int emitPushButtonClicked();
 
 private:
   QScopedPointer<Ui::MainWindow> m_ui;
