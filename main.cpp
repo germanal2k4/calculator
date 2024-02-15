@@ -49,7 +49,7 @@ int main(int argc, char *argv[]) {
     QScopedPointer<QCoreApplication> app(new QCoreApplication(argc, argv));
     auto options = Parser::exec();
 
-    options.widget = true;
+    options.qml = true;
     if (options.widget || options.qml) {
         qDebug() << "gui";
         app.reset();
