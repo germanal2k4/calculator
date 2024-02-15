@@ -15,6 +15,7 @@ QString AppCore::setSum(QString s)
     count++;
     if(count % 2 == 1) {
         sum = s.toInt();
+        Clear();
         return QString("");
     }
     else{
