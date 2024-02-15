@@ -1,0 +1,9 @@
+-rootPath
+/Users/germanalbershteyn/untitled
+-cmake-output
+-output-file
+/Users/germanalbershteyn/untitled/build/.qt_plugins/Qt6_QmlPlugins_Imports_untitled.cmake
+-importPath
+/Users/germanalbershteyn/untitled/build
+-importPath
+/opt/homebrew/share/qt/qml
